@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 from argparse import ArgumentParser
 from random import shuffle
 from pathlib import Path
@@ -65,11 +67,13 @@ def encode(text: str | Path, doubles: bool=False, bifrucate: bool=False) -> str:
 def main():
     parser = ArgumentParser(
         prog='Typopycemia',
-        usage='Inucrtode topys like nveer brfoee',
+        usage=encode('Inucrtode topys like nveer brfoee'),
         description=
-        (
+        encode(
             'Input string is split on non-ascii letters and each run has all middle letters shuffled '
-            '(e.g. Hello, World! -> Hlelo, Wrlod!)'
+            '(e.g. Hello, World! -> Hlelo, Wrlod!)',
+            doubles=True,
+            bifrucate=True,
         ),
     )
 
