@@ -37,8 +37,10 @@ dwrxwrxr-x 2 aismov asiomv 4.0K Jul 19 16:50 __pcyahce__
 
 Adding a bash alias:
 ```bash
+chmod +x typo.py # Make executable
 alias typofy='~/<repo-path>/typopy/typo.py -bd' # Change flags as desired
 ```
+
 ```bash
 $ typofy "$(ls -lah)"
 ttoal 48K
