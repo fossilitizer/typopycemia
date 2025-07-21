@@ -1,5 +1,5 @@
 [project]
-name = "typopycemia"
+name = "typopy"
 version = "0.1.0"
 description = "Dyslexia in the terminal"
 readme = "README.md"

@@ -34,8 +34,9 @@ def shuffle_buffer(buffer: list[str], doubles: bool=False, bifrucate: bool=False
     return [fl, *ml, ll]
 
 def encode(text: str | Path, doubles: bool=False, bifrucate: bool=False) -> str:
-    if Path(text).exists():
-        text = Path(text).read_text()
+    if isinstance(text, Path):
+        text = text.read_text()
+
     chars = []
     buffer = []
     for char in text:
@@ -66,7 +67,7 @@ def encode(text: str | Path, doubles: bool=False, bifrucate: bool=False) -> str:
 
 def main():
     parser = ArgumentParser(
-        prog='Typopycemia',
+        prog='Typopy',
         usage=encode('Inucrtode topys like nveer brfoee'),
         description=
         encode(
@@ -78,12 +79,21 @@ def main():
     )
 
     parser.add_argument('input', 
-                        help='Filename or string to typoglycemiafy')
+                        help='Text to typofy')
+    parser.add_argument('-f', '--file', action='store_true',
+                        help='File input')
     parser.add_argument('-d', '--doubles', action='store_true', 
                         help='Preserve double letters like "ee" and "ll"')
     parser.add_argument('-b', '--bifrucate', action='store_true', 
                         help='Dont send letters to the other side of the word "adhominem" -> a+?[dhom]? + ?[ine]?+m each part shuffled then joined')
     args = parser.parse_args()
+
+    if args.file:
+        fp = Path(args.input)
+        if not fp.exists():
+            raise FileNotFoundError(f'{fp.name} not found!')
+        args.input = fp
+
     print(encode(args.input, args.doubles, args.bifrucate))
 
 if __name__ == "__main__":
